@@ -1,0 +1,35 @@
+name: PR validation 
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ '*' ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET for API
+      uses: actions/setup-dotnet@v2
+    - run: dotnet build src/services/CarConfigurator/VehicleInventory.API/VehicleInventory.API.csproj
+    - run: dotnet test src/services/CarConfigurator/VehicleInventory.Tests/VehicleInventory.Tests.csproj
+ 
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          context: VehicleInventory
+          tags: car-configurator/vehicleinventory:${{ github.ref_name }}_build-${{ github.run_number }}
+          file: src/services/CarConfigurator/Dockerfile-vehicle-inventory-api
