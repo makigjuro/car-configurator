@@ -3,8 +3,6 @@ name: PR validation
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ '*' ]
 
 jobs:
   test:
@@ -13,8 +11,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup .NET for API
       uses: actions/setup-dotnet@v2
-    - run: dotnet build src/services/CarConfigurator/VehicleInventory.API/VehicleInventory.API.csproj
-    - run: dotnet test src/services/CarConfigurator/VehicleInventory.Tests/VehicleInventory.Tests.csproj
+    - run: dotnet build src/services/VehicleInventory/VehicleInventory.API/VehicleInventory.API.csproj
+    - run: dotnet test src/services/VehicleInventory/VehicleInventory.Tests/VehicleInventory.Tests.csproj
  
   build:
     name: build
@@ -30,6 +28,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: src/services/CarConfigurator/
+          context: src/services/VehicleInventory/
           tags: makigjuro/car-config-vehicle-inv-api:latest
-          file: src/services/CarConfigurator/Dockerfile-vehicle-inventory-api
+          file: src/services/Dockerfile-vehicle-inventory-api
