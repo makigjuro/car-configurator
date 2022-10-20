@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: makigjuro
-          tags: makigjuro/car-config-vehicle-inv-api:${{ github.ref_name }}_build-${{ github.run_number }}
+          context: src/services/CarConfigurator/
+          tags: makigjuro/car-config-vehicle-inv-api:latest
           file: src/services/CarConfigurator/Dockerfile-vehicle-inventory-api
