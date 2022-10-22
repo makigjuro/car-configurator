@@ -18,7 +18,16 @@ services:
   
   # rabbitmq:
   #   image: rabbitmq:3-management-alpine
-  
+
+  ordering-api:
+    build:
+      context: .
+      dockerfile: Dockerfile-ordering-api
+    depends_on:
+      - sqldata
+    ports:
+      - 2501:5000
+
   vehicle-inventory-api:
     build:
       context: .

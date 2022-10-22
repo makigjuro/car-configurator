@@ -39,6 +39,7 @@ public class ApplicationStartup
         container.RegisterModule(new LoggingModule(logger));
         container.RegisterModule(new DataAccessModule(connectionString));
         container.RegisterModule(new MediatorModule(typeof(Application.CarBrands.GetCarBrandsQuery).Assembly));
+        
         return null;
     }
     

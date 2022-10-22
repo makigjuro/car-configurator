@@ -5,20 +5,23 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["VehicleInventory.API/VehicleInventory.API.csproj", "VehicleInventory.API/"]
-COPY ["VehicleInventory.Application/VehicleInventory.Application.csproj", "VehicleInventory.Application/"]
-COPY ["VehicleInventory.Infrastructure/VehicleInventory.Infrastructure.csproj", "VehicleInventory.Infrastructure/"]
-COPY ["VehicleInventory.Domain/VehicleInventory.Domain.csproj", "VehicleInventory.Domain/"]
 
-RUN dotnet restore "VehicleInventory.API/VehicleInventory.API.csproj"
-COPY . .
-WORKDIR "/src/VehicleInventory.API"
-RUN dotnet build "VehicleInventory.API.csproj" -c Release -o /app/build
+COPY ["BuildingBlocks/.", "BuildingBlocks/."]
+COPY ["VehicleInventory/.", "VehicleInventory/."]
+COPY ["VehicleInventory/VehicleInventory.API/", "VehicleInventory/VehicleInventory.API/"]
+COPY ["VehicleInventory/VehicleInventory.Application/", "VehicleInventory/VehicleInventory.Application/"]
+COPY ["VehicleInventory/VehicleInventory.Infrastructure/", "VehicleInventory/VehicleInventory.Infrastructure/"]
+COPY ["VehicleInventory/VehicleInventory.Domain/", "VehicleInventory/VehicleInventory.Domain/"]
+
+RUN dotnet restore "VehicleInventory/VehicleInventory.API/VehicleInventory.API.csproj"
+
+RUN dotnet build "VehicleInventory/VehicleInventory.API/VehicleInventory.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "VehicleInventory.API.csproj" -c Release -o /app/publish
+RUN dotnet publish "VehicleInventory/VehicleInventory.API/VehicleInventory.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "VehicleInventory.API.dll"]
+

@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CarConfigurator.Framework\CarConfigurator.Framework.csproj" />
       <ProjectReference Include="..\VehicleInventory.Domain\VehicleInventory.Domain.csproj" />
     </ItemGroup>
 

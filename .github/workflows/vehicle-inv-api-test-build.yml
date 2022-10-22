@@ -1,9 +1,11 @@
-name: PR validation 
+name: Vehicle Inventory API Test & Build
 
 on:
   push:
     branches: [ main ]
-
+    paths: 
+       - 'src/services/VehicleInventory/**'
+       - 'src/services/BuildingBlocks/**'
 jobs:
   test:
     runs-on: ubuntu-latest
