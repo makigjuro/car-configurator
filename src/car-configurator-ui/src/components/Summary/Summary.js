@@ -18,39 +18,34 @@ const Summary = ({
   totalPrice = 0
 }) => {
   const selectedModel = models?.find(model => model?.key === config?.model);
-  const selectedType = selectedModel?.types?.find(type => type.value === config?.car_type);
-  const selectedColor = selectedModel?.colors?.find(color => color.value === config?.color);
-  const selectedWheels = selectedModel?.wheels?.find(wheels => wheels.value === config?.wheels);
-  const selectedInteriorColor = selectedModel?.interiorColors?.find(interiorColor => interiorColor.value === config?.interior_color);
-  const selectedInteriorLayout = selectedModel?.interiorLayouts?.find(interiorLayout => interiorLayout.value === config?.interior_layout);
 
   return (
     <div className="summary">
-      <h1>Your {selectedModel?.name}</h1>
+      <h1>Your {selectedModel?.carName}</h1>
       <p className="summary-edd">Estimated delivery: 5-9 weeks</p>
       <div className="summary-content">
         <p>Summary</p>
         <ul>
           <li>
-            <span>{selectedModel?.name} {selectedType?.label}</span>
-            <span>{formatPrice(selectedType?.price)}</span>
+            <span>{selectedModel?.carName} {config?.carEngine.itemName}</span>
+            <span>{formatPrice(selectedModel?.carPrice)} + {formatPrice(config?.carEngine.itemPrice)}</span>
           </li>
           <li>
-            <span>{selectedColor?.label}</span>
-            <span>{formatPrice(selectedColor?.price)}</span>
+            <span>{config.carColor?.itemName}</span>
+            <span>{formatPrice(config.carColor?.itemPrice)}</span>
           </li>
           <li>
-            <span>{selectedWheels?.label}</span>
-            <span>{formatPrice(selectedWheels?.price)}</span>
+            <span>{config.carRims?.itemName}</span>
+            <span>{formatPrice(config.carRims?.itemPrice)}</span>
           </li>
           <li>
-            <span>{selectedInteriorColor?.label}</span>
-            <span>{formatPrice(selectedInteriorColor?.price)}</span>
+            <span>{config.carInterior?.itemName}</span>
+            <span>{formatPrice(config.carInterior?.itemPrice)}</span>
           </li>
-          <li>
+          {/* <li>
             <span>{selectedInteriorLayout?.label}</span>
             <span>{formatPrice(selectedInteriorLayout?.price)}</span>
-          </li>
+          </li> */}
         </ul>
         <p>
           <span>Total price</span>

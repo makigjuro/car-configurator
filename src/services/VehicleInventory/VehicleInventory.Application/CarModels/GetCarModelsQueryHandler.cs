@@ -16,6 +16,9 @@ internal sealed class GetCarModelsQueryHandler : IQueryHandler<GetCarModelsQuery
     public async Task<List<CarModelDto>> Handle(GetCarModelsQuery request, CancellationToken cancellationToken)
     {
         var models = await _repository.GetAllCarModelsForBrand(request.CarBrandId);
+        
+        
+        
         return models.Select(x => new CarModelDto()
         {
             CarModelId = x.Id,

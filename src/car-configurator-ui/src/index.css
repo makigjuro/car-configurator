@@ -35,3 +35,17 @@ body {
   --menu-height: 67px;
   --footer-height: 72px;
 }
+
+body.dark-mode {
+  --theme-background: #151618;
+  --theme-footer-background: #151618;
+  --theme-surface: #25282c;
+  --theme-text: #ffffff;
+  --theme-footer-text: #ffffff;
+  --theme-primary: #c33364;
+  --theme-separator: rgba(244,245,246,0.12);
+  --theme-footer-separator: rgba(244,245,246,0.12);
+  --theme-border: #151618;
+  --theme-surface-border: rgba(244,245,246,0.12);
+  --theme-drop-shadow: drop-shadow(0 0 0.75rem var(--theme-primary));
+}

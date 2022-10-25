@@ -6,15 +6,6 @@ import './Settings.css';
 // Components
 import Option from '../Option';
 
-/*
- * TODO: Refactor Editor to leverage React hooks
- *
- * Requirements:
- * - store selectedOptions in React state using the useState hook 
- * - initialize state using lazy initialization
- * - use other React hooks if needed
- * 
- */ 
 const Settings = ({
   config = null,
   settings = null,
@@ -24,8 +15,11 @@ const Settings = ({
   const selectedOptions = settings?.reduce(
     (acc, setting) => ({
       ...acc,
-      [setting.prop]: setting.options.find(option =>
-        option.value === config[setting.prop]
+      [setting.prop]: setting.options?.find(option => {
+        return        option.value === config[setting.prop].carItemId || 
+        option.value === config[setting.prop] 
+      }
+        
       ) ?? []
     }),
     {}
@@ -58,8 +52,9 @@ const Settings = ({
                       {...option}
                       key={option.value}
                       type={setting.type}
-                      price={formatPrice(option.price)}
-                      active={config?.[setting.prop] === option.value}
+                      src={option.src}
+                      price={formatPrice(option.carPrice ?? option.itemPrice)}
+                      active={config?.[setting.prop].carItemId === option.value || config?.[setting.prop] === option.value}
                       onSelectOption={(value) =>
                         onSelectOption(setting.prop, value)
                       }
@@ -72,7 +67,7 @@ const Settings = ({
                   <div className="settings-group-label">
                     <span>{selectedOptions?.[setting.prop]?.label}</span>
                     <span className="price">
-                      {formatPrice(selectedOptions?.[setting.prop]?.price)}
+                      {formatPrice(selectedOptions?.[setting.prop]?.itemPrice)}
                     </span>
                   </div>
                 ) : null

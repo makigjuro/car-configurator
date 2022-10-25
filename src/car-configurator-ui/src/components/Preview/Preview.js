@@ -4,40 +4,32 @@ import PropTypes from 'prop-types';
 import './Preview.css';
 // Components
 import Slideshow from '../Slideshow';
+import {getCatalogPicture} from "../../api/vehicleInventoryService";
 
-/*
- * TODO: Refactor Preview as a functional component
- *
- * Requirements:
- * - Use React hooks if necessary
- * - Use function closures instead of this for callbacks and event handlers
- * - Preview logic and behavior should remain the same
- * 
- */ 
 class Preview extends React.Component {
   get index() {
     return this.props?.models.findIndex(model => 
-      model.key === this.props.config?.model
+      model.carModelId === this.props.config?.carModelId
     );
   };
 
   get items() {
     return this.props.models.map(model => ({
-      alt: model.name,
-      url: `${process.env.PUBLIC_URL}/cars/model_${model.key}/model_${model.key}_${this.props.config.color}_${this.props.config.wheels}.png`,
-      scale: ['x'].includes(model.key)
+      alt: model.carName,
+      url : getCatalogPicture(model.carModelId),
+      scale: ['x'].includes(model.carModelId)
     }));
   };
 
   get selectedModel() {
     return this.props.models.find(model =>
-      model.key === this.props.config.model
+      model.carModelId === this.props.config.carModelId
     );
   };
 
   get selectedType() {
     return this.selectedModel?.types?.find(type =>
-      type.value === this.props.config.car_type
+      type.value === this.props.config.carEngine
     );
   };
 
@@ -70,7 +62,7 @@ class Preview extends React.Component {
           onClickPrev={this.handleOnClickPrev}
           onClickNext={this.handleOnClickNext}
         />
-        {
+        {/* {
           this.props.showSpecs ? (
             <ul className="specs">
               <li>
@@ -87,7 +79,7 @@ class Preview extends React.Component {
               </li>
             </ul>
           ) : null
-        }
+        } */}
       </div>
     );
   };

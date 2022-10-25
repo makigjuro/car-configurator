@@ -37,7 +37,7 @@ namespace VehicleInventory.Infrastructure.Migrations
                     b.ToTable("CarBrands", (string)null);
                 });
 
-            modelBuilder.Entity("VehicleInventory.Domain.CarInventoryItems.CarItem", b =>
+            modelBuilder.Entity("VehicleInventory.Domain.CarItems.CarItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,12 +49,16 @@ namespace VehicleInventory.Infrastructure.Migrations
                     b.Property<Guid>("CarItemTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CarModelId")
+                    b.Property<Guid?>("CarModelId")
+                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsIncluded")
+                        .HasColumnType("bit");
 
                     b.Property<int>("MaxStockThreshold")
                         .HasColumnType("int");
@@ -145,7 +149,7 @@ namespace VehicleInventory.Infrastructure.Migrations
                     b.ToTable("CarModels", (string)null);
                 });
 
-            modelBuilder.Entity("VehicleInventory.Domain.CarInventoryItems.CarItem", b =>
+            modelBuilder.Entity("VehicleInventory.Domain.CarItems.CarItem", b =>
                 {
                     b.HasOne("VehicleInventory.Domain.CarItemTypes.CarItemType", "CarItemType")
                         .WithMany()

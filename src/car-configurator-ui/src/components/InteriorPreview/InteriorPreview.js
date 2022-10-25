@@ -2,15 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // Styles
 import './InteriorPreview.css';
+import {getCatalogItemPicture} from "../../api/vehicleInventoryService";
 
-/*
- * TODO
- *
- * Requirements:
- * - use React hooks if needed
- * - use performance optimization if needed
- * 
- */  
+
 const InteriorPreview = ({ interior = null }) => {
   return (
     <div className="interior-preview">
@@ -25,7 +19,7 @@ const InteriorPreview = ({ interior = null }) => {
           width="100%"
           height="100%"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          xlinkHref={`${process.env.PUBLIC_URL}/interiors/${interior?.value}.jpeg`}
+          xlinkHref={getCatalogItemPicture(interior?.value)}
           preserveAspectRatio="xMidYMid slice"
         />
       </svg>

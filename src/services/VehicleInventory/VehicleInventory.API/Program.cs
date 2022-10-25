@@ -10,13 +10,30 @@ public static class Program
 {
     static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
+        WebApplicationBuilder builder = WebApplication.CreateBuilder(new WebApplicationOptions
+        {
+            ContentRootPath = Directory.GetCurrentDirectory(),
+            WebRootPath = "Pics"
+        });
 
         builder.Services.Configure<CookiePolicyOptions>(options =>
         {
             options.CheckConsentNeeded = context => true; 
             options.MinimumSameSitePolicy = SameSiteMode.None;
         });
+        
+        var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                policy  =>
+                {
+                    policy.WithOrigins("http://localhost:3000",
+                        "http://localhost:3001");
+                });
+        });
+
 
         builder.Services.AddControllers();
         builder.Services.AddMvc().AddControllersAsServices();
@@ -26,7 +43,6 @@ public static class Program
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Vehicle Inventory API V1", Version = "v1" });
         });
-        builder.WebHost.UseWebRoot("Pics");
         var autoServiceProviderFactory = new AutofacServiceProviderFactory();
         builder.Host.UseServiceProviderFactory(autoServiceProviderFactory)
             .ConfigureContainer<ContainerBuilder>(containerBuilder =>
@@ -52,7 +68,8 @@ public static class Program
         app.UseCookiePolicy();
         app.MapHealthChecks("/health-check");
         app.UseSwagger();
-
+        app.UseStaticFiles();
+        app.UseCors(MyAllowSpecificOrigins);
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vehicle Inventory API V1"));
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

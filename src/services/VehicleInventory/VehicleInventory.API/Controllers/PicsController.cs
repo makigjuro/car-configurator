@@ -33,20 +33,27 @@ public class PicController : ControllerBase
         var item = await _vehicleInventoryContext.CarItems
             .SingleOrDefaultAsync(ci => ci.Id == carItemId);
 
+        var pictureName = "model_s_wheel_1.png";
+
         if (item != null)
         {
-            var webRoot = _env.WebRootPath;
-            var path = Path.Combine(webRoot, item.PictureFileName);
+            pictureName = item.PictureFileName;
 
-            string imageFileExtension = Path.GetExtension(item.PictureFileName);
-            string mimetype = GetImageMimeTypeFromImageFileExtension(imageFileExtension);
-
-            var buffer = await System.IO.File.ReadAllBytesAsync(path);
-
-            return File(buffer, mimetype);
+            if (string.IsNullOrEmpty(pictureName))
+            {
+                pictureName = "model_s_wheel_1.png";
+            }
         }
 
-        return NotFound();
+        var webRoot = _env.WebRootPath;
+        var path = Path.Combine(webRoot, pictureName);
+
+        string imageFileExtension = Path.GetExtension(pictureName);
+        string mimetype = GetImageMimeTypeFromImageFileExtension(imageFileExtension);
+
+        var buffer = await System.IO.File.ReadAllBytesAsync(path);
+
+        return File(buffer, mimetype);
     }
     
     [HttpGet]

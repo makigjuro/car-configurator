@@ -63,7 +63,7 @@ public class DataAccessModule : Autofac.Module
                 
                 context.Database.Migrate();
                 
-                //new VehicleInventoryContextSeed().Seed(context);
+                new VehicleInventoryContextSeed().Seed(context);
                 
                 return context;
             })

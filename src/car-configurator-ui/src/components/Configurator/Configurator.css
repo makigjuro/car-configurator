@@ -16,6 +16,12 @@
   overflow-x: hidden;
 }
 
+.image-home{
+  width: 50px !important;
+  height: 50px !important;
+}
+
+
 @media(min-width: 992px) {
   .app-content {
     flex-direction: row;

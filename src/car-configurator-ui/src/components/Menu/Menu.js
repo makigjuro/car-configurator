@@ -3,39 +3,18 @@ import PropTypes from 'prop-types';
 // Styles
 import './Menu.css';
 
-/*
- * TODO: Refactor Menu as a functional component
- *
- * Requirements:
- * - Create a custom hook to implement dark mode named useDarkMode
- * - Switch from setState to the useDarkMode hook
- * - Use function closures instead of this for callbacks and event handlers
- * - Menu logic and behavior should remain the same
- *
- */
 class Menu extends React.Component {
   state = {
     darkMode: false,
   };
 
-  handleOnChangeMode = () => {
-    this.setState(prevState => ({
-      ...prevState,
-      darkMode: !prevState.darkMode,
-    }));
-  };
-
   render() {
-    // const ModeIcon = this.state.darkMode ? FaSun : FaMoon;
-
-    const brandLogo = this.state.darkMode
-      ? `${process.env.PUBLIC_URL}/logo_white.svg`
-      : `${process.env.PUBLIC_URL}/logo.svg`;
+    const brandLogo = `${process.env.PUBLIC_URL}/tesla_logo_icon.png`;
 
     return (
       <div className="menu-container">
-        <a href="https://alterclass.io/courses/react" className="logo">
-          <img src={brandLogo} alt="AlterClass" />
+        <a href="/" className="logo">
+          <img className='image-home' src={brandLogo} alt="Tesla" />
         </a>
         <ul className="menu-nav">
           {this.props.items.map((item, i) => (
@@ -48,7 +27,6 @@ class Menu extends React.Component {
             </li>
           ))}
         </ul>
-        {/* <ModeIcon className="mode-icon" onClick={this.handleOnChangeMode} /> */}
       </div>
     );
   }

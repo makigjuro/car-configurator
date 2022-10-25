@@ -74,10 +74,10 @@
   border: 2px solid var(--theme-border);
   box-sizing: border-box;
 }
-.color-option > div.white {
+.color-option > div.pearlwhitemulti-coat {
   background: white;
 }
-.color-option > div.black {
+.color-option > div.solidblack {
   background: linear-gradient(
     to bottom right,
     hsl(0, 0%, 100%) 0%,
@@ -98,7 +98,7 @@
     hsl(0, 0%, 0%) 100%
   );
 }
-.color-option > div.silver {
+.color-option > div.midnightsilvermetallic {
   background: linear-gradient(
     to bottom right,
     hsl(0, 0%, 100%) 0%,
@@ -119,7 +119,7 @@
     hsl(208.97, 40.85%, 13.92%) 100%
   );
 }
-.color-option > div.blue {
+.color-option > div.deepbluemetallic {
   background: linear-gradient(
     to bottom right,
     hsl(0, 0%, 100%) 0%,
@@ -140,7 +140,7 @@
     hsl(222.86, 100%, 32.94%) 100%
   );
 }
-.color-option > div.red {
+.color-option > div.redmulti-coat {
   background: linear-gradient(
     to bottom right,
     hsl(0, 0%, 100%) 0%,

@@ -13,6 +13,12 @@
   border-bottom: 1px solid var(--theme-separator);
 }
 
+.image-home{
+  width: 50px !important;
+  height: 50px !important;
+}
+
+
 .menu-container .logo {
   display: block;
 }

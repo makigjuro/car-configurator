@@ -7,6 +7,14 @@ namespace VehicleInventory.Domain.CarItems;
 
 public class CarItem : Entity, IAggregateRoot
 {
+    public CarItem()
+    {
+        Description = String.Empty;
+        PictureFileName = String.Empty;
+        PictureUri = String.Empty;
+        Price = MoneyValue.Of(0, "€");
+    }
+    
     public Guid Id { get; set; }
     
     public Guid? CarModelId { get; private set; }

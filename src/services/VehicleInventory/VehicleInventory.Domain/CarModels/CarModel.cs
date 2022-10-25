@@ -6,6 +6,12 @@ namespace VehicleInventory.Domain.CarModels;
 
 public class CarModel : Entity, IAggregateRoot
 {
+    public CarModel()
+    {
+        Description = String.Empty;
+        PictureFileName = String.Empty;
+        PictureUri = String.Empty;
+    }
     public Guid Id { get; set; }
     public string Name { get; set; }
     
