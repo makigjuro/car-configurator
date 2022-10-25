@@ -1,10 +1,10 @@
-name: Vehicle Inventory API Test & Build
+name: Configurator API Test & Build
 
 on:
   push:
     branches: [ main ]
     # paths: 
-    #    - 'src/services/VehicleInventory/**'
+    #    - 'src/services/Ordering/**'
     #    - 'src/services/BuildingBlocks/**'
 jobs:
   test:
@@ -13,8 +13,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Setup .NET for API
       uses: actions/setup-dotnet@v2
-    - run: dotnet build src/services/VehicleInventory/VehicleInventory.API/VehicleInventory.API.csproj
-    - run: dotnet test src/services/VehicleInventory/VehicleInventory.Tests/VehicleInventory.Tests.csproj
+    - run: dotnet build src/services/Configurator/Configurator.API/Configurator.API.csproj
+    - run: dotnet test src/services/Configurator/Configurator.Tests/Configurator.Tests.csproj
  
   build:
     name: build
@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: src/services/VehicleInventory/
-          tags: makigjuro/car-config-vehicle-inv-api:latest
-          file: src/services/Dockerfile-vehicle-inventory-api
+          context: src/services/Configurator/
+          tags: makigjuro/car-config-api:latest
+          file: src/services/Dockerfile-configurator-api
