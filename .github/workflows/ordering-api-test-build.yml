@@ -3,9 +3,9 @@ name: Ordering  API Test & Build
 on:
   push:
     branches: [ main ]
-    paths: 
-       - 'src/services/Ordering/**'
-       - 'src/services/BuildingBlocks/**'
+    # paths: 
+    #    - 'src/services/Ordering/**'
+    #    - 'src/services/BuildingBlocks/**'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: src/services/Ordering/
+          context: src/services/
           tags: makigjuro/car-config-ordering-api:latest
           file: src/services/Dockerfile-ordering-api

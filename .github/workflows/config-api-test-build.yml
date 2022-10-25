@@ -14,7 +14,7 @@ jobs:
     - name: Setup .NET for API
       uses: actions/setup-dotnet@v2
     - run: dotnet build src/services/Configurator/Configurator.API/Configurator.API.csproj
-    - run: dotnet test src/services/Configurator/Configurator.Tests/Configurator.Tests.csproj
+    # - run: dotnet test src/services/Configurator/Configurator.Tests/Configurator.Tests.csproj
  
   build:
     name: build
