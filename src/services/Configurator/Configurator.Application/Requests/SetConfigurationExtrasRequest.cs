@@ -4,12 +4,11 @@ public class SetConfigurationExtrasRequest
 {
     public SetConfigurationExtrasRequest()
     {
-        CarExtras = new List<SetCarItemDtoRequest>();
     }
     
     public Guid CarBrandId { get; set; }
 
     public Guid CarConfigurationId { get; set; }
 
-    public List<SetCarItemDtoRequest> CarExtras { get; set; }
+    public SetCarItemDtoRequest CarExtras { get; set; }
 }

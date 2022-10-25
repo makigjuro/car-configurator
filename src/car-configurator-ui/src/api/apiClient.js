@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import history from "../history";
 
 export const VEHICLE_API_BASE_URL = "http://localhost:5000";
+export const CONFIGURATOR_API_BASE_URL = "http://localhost:5001";
 
 export function post(url, body) {
   return fetchWrapper(url, "POST", body);

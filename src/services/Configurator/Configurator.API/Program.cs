@@ -67,11 +67,11 @@ public static class Program
         app.UseSwagger();
         app.UseStaticFiles();
         app.UseCors(MyAllowSpecificOrigins);
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Vehicle Inventory API V1"));
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Configurator API V1"));
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-        app.Urls.Add("http://*:5000");
+        app.Urls.Add("http://*:5001");
         
 
         app.Run();

@@ -1,4 +1,5 @@
 import * as ActionTypes from "../actions/actionTypes";
+import * as configurationservice from "../../api/configuratorService";
 
 export function setCarBrandIdSuccess(carBrandId) {
   return { type: ActionTypes.CONFIG_SET_CAR_BRAND, carBrandId };
@@ -91,3 +92,18 @@ export function changeConfigExtras(carExtras) {
         dispatch(changeConfigExtrasSuccess(carExtras));
     };
 }
+
+export function loadCarConfigsSuccess(configs) {
+    return { type: ActionTypes.LOAD_CAR_CONFIGS, configs };
+  }
+  
+  export function loadCarConfigs() {
+      return function(dispatch) {
+        return configurationservice.getAllConfigs().then(response => {
+            if(response){
+                dispatch(loadCarConfigsSuccess(response));
+            }
+        });
+      };
+    }
+  

@@ -7,10 +7,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Database" />
-      <Folder Include="Domain" />
+      <Folder Include="Database\Configuration" />
       <Folder Include="Migrations" />
-      <Folder Include="Repositories" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Configurator.Application\Configurator.Application.csproj" />
+      <ProjectReference Include="..\Configurator.Domain\Configurator.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
     </ItemGroup>
 
 </Project>

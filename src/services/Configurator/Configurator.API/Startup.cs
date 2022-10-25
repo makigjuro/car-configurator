@@ -1,4 +1,5 @@
 using Autofac;
+using Configurator.Infrastructure;
 using Serilog;
 using Serilog.Formatting.Compact;
 using ILogger = Serilog.ILogger;

@@ -13,12 +13,12 @@ services:
     volumes:
       - /var/mssql-data:/var/opt/mssql
   
-  nosqldata:
-    image: mongo:latest
-    ports:
-      - 27037:27017
-    volumes:
-      - data/db
+#  nosqldata:
+#    image: mongo:latest
+#    ports:
+#      - 27037:27017
+#    volumes:
+#      - data/db
   
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -46,9 +46,9 @@ services:
       context: .
       dockerfile: Dockerfile-configurator-api
     depends_on:
-      - nosqldata
+      - sqldata
     ports:
-      - 5001:5000
+      - 5001:5001
 
 
 

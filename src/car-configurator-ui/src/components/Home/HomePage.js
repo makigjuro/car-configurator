@@ -2,20 +2,26 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as carActions from "../../redux/actions/vehicleInventoryActions";
+import * as configActions from "../../redux/actions/carConfigurationActions";
+
 import Settings from '../Settings';
 import './HomePage.css';
 import {createSearchParams, useNavigate} from 'react-router-dom';
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
+import { loadCarConfigs } from "../../redux/actions/carConfigurationActions";
 
 const HomePage = ({
   loadCarBrands,
   carBrands,
-  loadCarItemTypes
+  loadCarItemTypes,
+  loadCarConfigs,
+  configs
 }) => {
   useEffect(() => {
     loadCarBrands();
     loadCarItemTypes();
+    loadCarConfigs();
   }, []);
   const navigate = useNavigate();
 
@@ -36,6 +42,15 @@ const HomePage = ({
         options: carBrands.map(model => ({
           value: model.carBrandId,
           label: model.brandName
+        }))
+      },
+      {
+        label: "My Configuraitons",
+        type: "text",
+        prop: "carConfig",
+        options: configs.map(model => ({
+          value: model.configurationId,
+          label: model.name
         }))
       }
       // ,{
@@ -118,17 +133,22 @@ const HomePage = ({
 HomePage.propTypes = {
   loadCarBrands: PropTypes.func.isRequired,
   carBrands: PropTypes.array.isRequired,
+  loadCarConfigs: PropTypes.func.isRequired,
+  configs: PropTypes.array.isRequired,
+
   loadCarItemTypes :PropTypes.func.isRequired};
 
 function mapStateToProps(state) {
   return {
-    carBrands: state.carBrands
+    carBrands: state.carBrands,
+    configs : state.configs
   };
 }
 
 const mapDispatchToProps = {
   loadCarBrands: carActions.loadCarBrands,
-  loadCarItemTypes: carActions.loadCarItemTypes
+  loadCarItemTypes: carActions.loadCarItemTypes,
+  loadCarConfigs: configActions.loadCarConfigs
 };
 
 export default connect(

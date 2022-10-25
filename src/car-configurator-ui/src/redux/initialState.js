@@ -11,8 +11,8 @@ export default {
     carRims : [],
     carInteriors : [],
     carExtras : [],
-    carConfigurations: [],
     orders : [],
+    configs : [],
     config : {
       carBrandId: "",
       carConfigurationId : "",
