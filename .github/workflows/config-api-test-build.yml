@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          context: src/services/Configurator/
+          context: src/services/
           tags: makigjuro/car-config-api:latest
           file: src/services/Dockerfile-configurator-api
