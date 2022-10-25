@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // Styles
 import './Option.css';
 
-const types = ["text", "color", "image"];
+const types = ["text", "color", "image", "checkbox"];
  
 const Option = ({
   value = '',
@@ -34,6 +34,13 @@ const Option = ({
         return <img src={src} alt={label} title={label} />;
       case "color":
         return <div className={label.replaceAll(" ", "").toLowerCase()} title={label} />;
+      case "checkbox":
+          return (
+            <>
+              <span>{label}</span>
+              {price ? <span className="price">{price}</span> : null}
+            </>
+          );
       default:
         return null;
     }

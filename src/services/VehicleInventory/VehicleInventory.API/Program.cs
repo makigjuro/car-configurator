@@ -1,7 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using VehicleInventory.Infrastructure.Domain;
 using VehicleInventoryAPI;
 
 namespace VehicleInventory.API;

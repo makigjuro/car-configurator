@@ -1,10 +1,9 @@
 using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VehicleInventory.Application.CarBrands;
 using VehicleInventory.Application.CarModels;
 
-namespace VehicleInventoryAPI.Controllers;
+namespace VehicleInventory.API.Controllers;
 
 [Route("api/cars")]
 [ApiController]

@@ -56,7 +56,7 @@ const Configurator = ({
     setCarConfigId(carConfigurationId);
 
     if(carModels.length > 0){
-      changeModel(carModels[0].carModelId);
+      changeModel(carModels[0]);
     }
   }, []);
 
@@ -81,7 +81,7 @@ const Configurator = ({
           {
             label: "Select car",
             type: "text",
-            prop: "carModelId",
+            prop: "carModel",
             options: carModels.map(model => ({
               value: model.carModelId,
               label: model.carName
@@ -130,7 +130,7 @@ const Configurator = ({
       },
       {
         name: "interior",
-        settings: [
+        settings: [,
           {
             label: "Select premium interior",
             type: "text",
@@ -140,7 +140,16 @@ const Configurator = ({
               label: model.itemName,
               src : getCatalogItemPicture(model.carItemId),
               itemPrice : model.itemPrice
-
+            })),          
+          },
+          {
+            label: "Select interior extras",
+            type: "checkbox",
+            prop: "carExtras",
+            options: carExtras.map(model => ({
+              value: model.carItemId,
+              label: model.itemName,
+              itemPrice : model.itemPrice
             })),          
           }
         ]
@@ -151,7 +160,7 @@ const Configurator = ({
   ];
 
   const totalPrice = () => {
-    const basePrice = selectedModel()?.carPrice; 
+    const basePrice = config?.carModel?.carPrice ?? 0;
 
     const motorPrice = config?.carEngine?.itemPrice ?? 0;
     const colorPrice = config?.carColor?.itemPrice ?? 0;
@@ -189,8 +198,17 @@ const Configurator = ({
 
   };
 
+  const orderCar = () => {
+
+  };
+
   const handleChangeModel = (carModelId) => {
-    changeModel(carModelId);
+    let carModel = carModels.find(model =>
+      model?.carModelId === carModelId
+    );
+
+    changeModel(carModel);
+    
 
     loadCarEnginePowers(carModelId, findCarItemType("CarEnginePowerType"));
     loadCarColors(carModelId, findCarItemType("CarColorType"));
@@ -200,7 +218,7 @@ const Configurator = ({
   };
 
   const handleOnSelectOption = (prop, value) => {
-    if (prop === "carModelId") {
+    if (prop === "carModel") {
       handleChangeModel(value);
     }
     else if(prop === "carEngine"){
@@ -254,9 +272,8 @@ const Configurator = ({
           {
             steps[config.currentStep]?.name === "interior" ? (
               <InteriorPreview
-                interior={carInteriors.find(
-                  interiorColor => interiorColor.carItemId === config.carInterior?.carItemId
-                )}
+                config={config.carInterior}
+                carInteriors={carInteriors}
               />
             ) : (
               <Preview
@@ -290,6 +307,7 @@ const Configurator = ({
           disableNext={isLastStep}
           onClickPrev={goToPrevStep}
           onClickNext={goToNextStep}
+          onClickOrder={orderCar}
         />
       </div>
     );

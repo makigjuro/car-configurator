@@ -32,12 +32,12 @@ export function configReducer(state = initialState.config, action) {
 
       return newStateThree;
     case ActionTypes.CONFIG_CHANGE_MODEL_ID:
-      if(state.carModelId === action.carModelId){
+      if(state.carModel?.carModelId === action.carModel?.carModelId){
         return state;
       }
 
       const newStateFour = Object.assign({}, state);
-      newStateFour.carModelId =  action.carModelId;
+      newStateFour.carModel =  action.carModel;
 
       return newStateFour;
     case ActionTypes.CONFIG_CHANGE_ENGINE:
@@ -62,9 +62,19 @@ export function configReducer(state = initialState.config, action) {
       return stt3;
     case ActionTypes.CONFIG_CHANGE_EXTRAS:
 
-      const stt4 = Object.assign({}, state);
-      stt4.carExtras.push(action.carExtras);
-      return stt4;
+      let extraFound =state.carExtras.find(existingItem => 
+        existingItem?.carItemId == action.carExtras.carItemId
+      );
+
+        if(!extraFound){
+        const stt4 = Object.assign({}, state);
+
+        stt4.carExtras.push(action.carExtras);
+        return stt4;
+  
+      }
+
+      return state;
 
     default:
       return state;

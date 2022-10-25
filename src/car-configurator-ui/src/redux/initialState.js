@@ -16,7 +16,7 @@ export default {
     config : {
       carBrandId: "",
       carConfigurationId : "",
-      carModelId : "",
+      carModel : {},
       currentStep : 0,
       carEngine : {},
       carColor : {},

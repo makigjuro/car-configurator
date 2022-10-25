@@ -6,20 +6,14 @@ import './Footer.css';
 // Icons
 import { MdNavigateBefore, MdNavigateNext } from 'react-icons/md';
 
-/*
- * TODO
- *
- * Requirements:
- * - use React hooks if needed
- * - use performance optimization if needed
- * 
- */ 
+ 
 const Footer = ({
   totalPrice = 0,
   disablePrev = true,
   disableNext = true,
   onClickPrev = () => null,
-  onClickNext = () => null
+  onClickNext = () => null,
+  onClickOrder = () => null
 }) => (
   <div className="footer">
     <div>
@@ -35,13 +29,17 @@ const Footer = ({
       <span>{formatPrice(totalPrice, '-')}</span>
     </div>
     <div>
-      <button
-        onClick={onClickNext}
-        disabled={disableNext}
-      >
-        <span>Next</span>
-        <MdNavigateNext />
-      </button>
+      {
+        disableNext ?  
+        <button onClick={onClickOrder}>
+          <span>Order</span>
+          <MdNavigateNext />
+        </button> :
+        <button onClick={onClickNext}>
+          <span>Next</span>
+          <MdNavigateNext />
+        </button> 
+      }
     </div>
   </div>
 );

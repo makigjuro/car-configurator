@@ -19,7 +19,7 @@ const InteriorPreview = ({ interior = null }) => {
           width="100%"
           height="100%"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          xlinkHref={getCatalogItemPicture(interior?.value)}
+          xlinkHref={`${process.env.PUBLIC_URL}/interiors/black_and_white.jpeg`}
           preserveAspectRatio="xMidYMid slice"
         />
       </svg>

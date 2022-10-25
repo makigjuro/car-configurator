@@ -31,6 +31,28 @@
   font-weight: 500;
 }
 
+.checkbox-option {
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-surface-border);
+  padding: 12px 20px;
+  margin-bottom: 12px;
+  border-radius: 25px;
+  width: 100%;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  transition: all .25s ease-in-out;
+}
+.checkbox-option > span:first-child {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.checkbox-option.active {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 2px var(--theme-primary);
+  font-weight: 500;
+}
+
 .image-option {
   width: 75px;
   height: 75px;

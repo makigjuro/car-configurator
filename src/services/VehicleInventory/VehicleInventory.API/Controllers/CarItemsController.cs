@@ -1,12 +1,10 @@
 using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using VehicleInventory.Application.CarBrands;
 using VehicleInventory.Application.CarItems;
 using VehicleInventory.Application.CarItemTypes;
-using VehicleInventory.Domain.CarItemTypes;
 
-namespace VehicleInventoryAPI.Controllers;
+namespace VehicleInventory.API.Controllers;
 
 [Route("api/cars/items")]
 [ApiController]

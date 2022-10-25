@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using VehicleInventory.Application.CarBrands;
 
-namespace VehicleInventoryAPI.Controllers;
+namespace VehicleInventory.API.Controllers;
 
 [Route("api/brands")]
 [ApiController]

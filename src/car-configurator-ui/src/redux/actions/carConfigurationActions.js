@@ -30,13 +30,13 @@ export function setCurrentStep(currentStep) {
     };
 }
 
-export function changeModelSuccess(carModelId) {
-    return { type: ActionTypes.CONFIG_CHANGE_MODEL_ID, carModelId };
+export function changeModelSuccess(carModel) {
+    return { type: ActionTypes.CONFIG_CHANGE_MODEL_ID, carModel };
 }
 
-export function changeModel(carModelId) {
+export function changeModel(carModel) {
     return function(dispatch) {
-        dispatch(changeModelSuccess(carModelId));
+        dispatch(changeModelSuccess(carModel));
     };
 }
 

@@ -9,7 +9,7 @@ import {getCatalogPicture} from "../../api/vehicleInventoryService";
 class Preview extends React.Component {
   get index() {
     return this.props?.models.findIndex(model => 
-      model.carModelId === this.props.config?.carModelId
+      model.carModelId === this.props.config?.carModel?.carModelId
     );
   };
 
@@ -23,7 +23,7 @@ class Preview extends React.Component {
 
   get selectedModel() {
     return this.props.models.find(model =>
-      model.carModelId === this.props.config.carModelId
+      model.carModelId === this.props.config?.carModel?.carModelId
     );
   };
 
@@ -62,24 +62,6 @@ class Preview extends React.Component {
           onClickPrev={this.handleOnClickPrev}
           onClickNext={this.handleOnClickNext}
         />
-        {/* {
-          this.props.showSpecs ? (
-            <ul className="specs">
-              <li>
-                <span className="specs-value">{this.specs?.range ?? ' - '}mi</span>
-                <span className="specs-label">Range (EPA est.)</span>
-              </li>
-              <li>
-                <span className="specs-value">{this.specs?.top_speed ?? ' - '}mph</span>
-                <span className="specs-label">Top Speed</span>
-              </li>
-              <li>
-                <span className="specs-value">{this.specs?.acceleration_time ?? ' - '}s</span>
-                <span className="specs-label">0-60 mph</span>
-              </li>
-            </ul>
-          ) : null
-        } */}
       </div>
     );
   };

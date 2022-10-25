@@ -6,9 +6,7 @@ import { carEnginesReducer as carEngines } from "../reducers/vehicleInventory/ca
 import { carExtrasReducer as carExtras } from "../reducers/vehicleInventory/carExtrasReducer";
 import { carInteriorsReducer as carInteriors } from "../reducers/vehicleInventory/carInteriorsReducer";
 import { carRimsReducer as carRims } from "../reducers/vehicleInventory/carRimsReducer";
-
 import { carItemTypesReducer as carItemTypes } from "../reducers/vehicleInventory/carItemTypesReducer";
-
 import { configReducer as config } from "../reducers/configurator/configReducer";
 
 const rootReducer = combineReducers({
@@ -24,3 +22,4 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+

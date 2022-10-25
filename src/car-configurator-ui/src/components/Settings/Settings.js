@@ -16,14 +16,27 @@ const Settings = ({
     (acc, setting) => ({
       ...acc,
       [setting.prop]: setting.options?.find(option => {
-        return        option.value === config[setting.prop].carItemId || 
-        option.value === config[setting.prop] 
+        return        option.value === config[setting.prop]?.carItemId || 
+        option.value === config[setting.prop]?.carModelId 
       }
         
       ) ?? []
     }),
     {}
   );
+
+  const hasExtrasSelected = (settingProp ,value) => {
+    
+     let isSelected = false;
+
+     if(config?.[settingProp]?.forEach((item) => {
+        if (item.carItemId == value) {
+          isSelected = true;
+        }
+     }));
+
+     return isSelected;
+    };
 
   return (
     <div className="settings">
@@ -45,6 +58,9 @@ const Settings = ({
                   </p>
                 ) : null
               }
+              
+              { 
+              setting.type !== "checkbox" ? 
               <div className={`settings-options settings-options-${setting.type}`}>
                 {
                   setting.options.map(option => (
@@ -54,7 +70,7 @@ const Settings = ({
                       type={setting.type}
                       src={option.src}
                       price={formatPrice(option.carPrice ?? option.itemPrice)}
-                      active={config?.[setting.prop].carItemId === option.value || config?.[setting.prop] === option.value}
+                      active={config?.[setting.prop]?.carItemId === option.value || config?.[setting.prop]?.carModelId === option.value }
                       onSelectOption={(value) =>
                         onSelectOption(setting.prop, value)
                       }
@@ -62,6 +78,25 @@ const Settings = ({
                   ))
                 }
               </div>
+              :
+              <div className={`settings-options settings-options-${setting.type}`}>
+              {
+                setting.options.map(option => (
+                  <Option
+                    {...option}
+                    key={option.value}
+                    type={setting.type}
+                    src={option.src}
+                    price={formatPrice(option.carPrice ?? option.itemPrice)}
+                    active={hasExtrasSelected(setting.prop,option.value)}
+                    onSelectOption={(value) =>
+                      onSelectOption(setting.prop, value)
+                    }
+                  />
+                ))
+              }
+             </div>
+              }
               {
                 setting.type !== "text" ? (
                   <div className="settings-group-label">

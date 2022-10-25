@@ -4,14 +4,6 @@ import { formatPrice } from '../../utils/utils';
 // Styles
 import './Summary.css';
 
-/*
- * TODO
- *
- * Requirements:
- * - use React hooks if needed
- * - use performance optimization if needed
- * 
- */ 
 const Summary = ({
   config = null,
   models = null,
@@ -42,10 +34,14 @@ const Summary = ({
             <span>{config.carInterior?.itemName}</span>
             <span>{formatPrice(config.carInterior?.itemPrice)}</span>
           </li>
-          {/* <li>
-            <span>{selectedInteriorLayout?.label}</span>
-            <span>{formatPrice(selectedInteriorLayout?.price)}</span>
-          </li> */}
+          {
+            config.carExtras?.map(carExtra => (
+              <li>
+              <span>{carExtra?.itemName}</span>
+              <span>{formatPrice(carExtra?.itemPrice)}</span>
+              </li>
+            ))
+          }
         </ul>
         <p>
           <span>Total price</span>
