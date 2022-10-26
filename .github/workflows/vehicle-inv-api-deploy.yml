@@ -1,0 +1,18 @@
+name: Deploy Vehicle Inventory API
+
+on:
+  workflow_run:
+    workflows: ["Vehicle Inventory API Test & Build"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: deploy to k8s
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f deploy/k8s/manifests/vehicle-inv-deployment.yml
