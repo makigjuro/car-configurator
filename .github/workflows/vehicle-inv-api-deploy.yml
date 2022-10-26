@@ -7,12 +7,29 @@ on:
       - completed
 
 jobs:
-  deploy:
-    name: deploy to k8s
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@master
+      - name: Azure login
+        id: login
+        uses: azure/login@v1.4.3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set AKS context
+        id: set-context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: '${{ secrets.resource_group }}' 
+          cluster-name: '${{ secrets.cluster_name }}'
+      - name: Setup kubectl
+        id: install-kubectl
+        uses: azure/setup-kubectl@v3
+      - name: Deploy to AKS
+        id: deploy-aks
+        uses: Azure/k8s-deploy@v4
+        with:
+          namespace: 'default'
+          manifests: |
+             vehicle-inv-deployment.yaml
+          images: makigjuro/car-config-vehicle-inv-api:latest
 
-      - name: Deploy to Kubernetes
-        run: kubectl apply -f deploy/k8s/manifests/vehicle-inv-deployment.yml
