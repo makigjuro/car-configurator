@@ -29,24 +29,24 @@ public class CarConfiguratorController : Controller
         {
             new ConfigurationDto()
             {
-                ConfigurationId = new Guid(),
+                ConfigurationId = Guid.NewGuid(),
                 Name = "My Configuration for Tesla S"
             },
             new ConfigurationDto()
             {
-                ConfigurationId = new Guid(),
+                ConfigurationId = Guid.NewGuid(),
                 Name = "My Configuration for Tesla S second"
             },
 
             new ConfigurationDto()
             {
-                ConfigurationId = new Guid(),
+                ConfigurationId = Guid.NewGuid(),
                 Name = "My Configuration for Tesla Model X"
             },
 
             new ConfigurationDto()
             {
-                ConfigurationId = new Guid(),
+                ConfigurationId = Guid.NewGuid(),
                 Name = "My Configuration for Tesla Model Y"
             }
         };

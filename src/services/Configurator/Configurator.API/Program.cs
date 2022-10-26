@@ -1,6 +1,8 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Configurator.Infrastructure.Hubs;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Configurator.API;
 
@@ -36,6 +38,7 @@ public static class Program
         builder.Services.AddMvc().AddControllersAsServices();
         builder.Services.AddRazorPages();
         builder.Services.AddHealthChecks();
+        builder.Services.AddSignalR();
         builder.Services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Configurator API V1", Version = "v1" });
@@ -65,11 +68,16 @@ public static class Program
         app.UseCookiePolicy();
         app.MapHealthChecks("/health-check");
         app.UseSwagger();
+
         app.UseStaticFiles();
         app.UseCors(MyAllowSpecificOrigins);
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Configurator API V1"));
 
-        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+            endpoints.MapHub<ConfiguratorActionsHub>("/configurator-actions");
+        });
 
         app.Urls.Add("http://*:5001");
         

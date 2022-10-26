@@ -1,4 +1,4 @@
-name: Ordering  API Test & Build
+name: Ordering API Test & Build
 
 on:
   push:
@@ -14,10 +14,11 @@ jobs:
     - name: Setup .NET for API
       uses: actions/setup-dotnet@v2
     - run: dotnet build src/services/Ordering/Ordering.API/Ordering.API.csproj
-    - run: dotnet test src/services/Ordering/Ordering.Tests/Ordering.Tests.csproj
+    # - run: dotnet test src/services/Ordering/Ordering.Tests/Ordering.Tests.csproj
  
   build:
-    name: build
+    name: build,
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

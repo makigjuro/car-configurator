@@ -1,5 +1,4 @@
 using Configurator.Domain.Entities;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Configurator.Domain.Repositories;
 

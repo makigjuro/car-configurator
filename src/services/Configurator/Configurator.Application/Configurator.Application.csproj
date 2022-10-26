@@ -11,4 +11,8 @@
       <ProjectReference Include="..\Configurator.Domain\Configurator.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="IntegrationEvents" />
+    </ItemGroup>
+
 </Project>
