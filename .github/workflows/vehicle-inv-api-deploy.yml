@@ -9,12 +9,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Azure login
-        id: login
-        uses: azure/login@v1.4.3
+    steps:          
+      - name: 'Az CLI login'
+        uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          client-id: ${{ secrets.SERVICE_PRINCIPAL }}
+          tenant-id: ${{ secrets.TENANT }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
       - name: Set AKS context
         id: set-context
         uses: azure/aks-set-context@v3
