@@ -39,7 +39,7 @@ services:
     depends_on:
       - sqldata
     ports:
-      - 5000:5000
+      - 5002:5002
 
   configurator-api:
     build:

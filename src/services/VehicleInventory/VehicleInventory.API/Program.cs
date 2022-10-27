@@ -73,7 +73,7 @@ public static class Program
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-        app.Urls.Add("http://*:5000");
+        app.Urls.Add("http://*:5002");
         
 
         app.Run();

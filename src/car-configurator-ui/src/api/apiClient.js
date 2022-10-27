@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import history from "../history";
 
-export const VEHICLE_API_BASE_URL = "http://localhost:5000";
+export const VEHICLE_API_BASE_URL = "http://localhost:5002";
 export const CONFIGURATOR_API_BASE_URL = "http://localhost:5001";
 
 export function post(url, body) {
@@ -23,7 +23,7 @@ export function httpDelete(url) {
 function fetchWrapper(url, method, body) {
   return fetch(url, {
     method,
-    mode: "cors",
+    // mode: "cors",
     headers: {
       Accept: "application/json",
       // "Content-Type": "application/json",

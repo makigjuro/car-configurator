@@ -45,7 +45,7 @@ const HomePage = ({
         }))
       },
       {
-        label: "My Configuraitons",
+        label: "My Configurations",
         type: "text",
         prop: "carConfig",
         options: configs.map(model => ({
@@ -69,8 +69,8 @@ const HomePage = ({
   };
   
   let handleOnSelectOption = (prop, value) => {
-    if (prop === "carBrand") {
-      this.handleChangeModel(value);
+    if (prop === "carBrandId") {
+      this.handleChangeBrand(value);
     }
     else {
       this.setState(prevState => ({
